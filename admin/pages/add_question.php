@@ -113,7 +113,98 @@
                         <input type="submit" name="submit" value="Add Question" class="btn-add" style="margin-left: 15%;" />
                         <a href="<?php echo SITEURL; ?>admin/index.php?page=questions"><button type="button" class="btn-delete">Cancel</button></a>
                     </form>
-                                   
+                    
+                    <?php 
+                        if(isset($_POST['submit']))
+                        {
+                            //echo "Clicked";
+                            //Managing Question Images
+                            if($_FILES['image']['name']!="")
+                            {
+                                //echo "Book Cover is Available";
+                                //Getting File Extension
+                                $ext=end(explode('.',$_FILES['image']['name']));
+                                //Checking if the file type is valid or not
+                                $valid_file=$obj->check_image_type($ext);
+                                if($valid_file==false)
+                                {
+                                    $_SESSION['invalid']="<div class='error'>Invalid Image type. Please use JPG or PNG or GIF file type.</div>";
+                                    header('location:'.SITEURL.'admin/index.php?page=add_question');
+                                    die();
+                                }
+                                //Uploading if the file is valid
+                                //first changing image name
+                                $new_name='Exam_Question_Vijay_Thapa_'.$obj->uniqid();
+                                $image_name=$new_name.'.'.$ext;
+                                //Adding Watermark to the image fie too
+                                $source=$_FILES['image']['tmp_name'];
+                                $destination="../images/questions/".$image_name;
+                                $upload=$obj->upload_file($source,$destination);
+                                if($upload==false)
+                                {
+                                    $_SESSION['upload']="<div class='error'>Failed to upload question image. Try again.</div>";
+                                    header('location:'.SITEURL.'admin/index.php?page=add_question');
+                                    die();
+                                }
+                            }
+                            else
+                            {
+                                $image_name="";
+                            }
+                            //Get all values from the forms
+                            $question=$obj->sanitize($conn,$_POST['question']);
+                            $first_answer=$obj->sanitize($conn,$_POST['first_answer']);
+                            $second_answer=$obj->sanitize($conn,$_POST['second_answer']);
+                            $third_answer=$obj->sanitize($conn,$_POST['third_answer']);
+                            $fourth_answer=$obj->sanitize($conn,$_POST['fourth_answer']);
+                            $fifth_answer=$obj->sanitize($conn,$_POST['fifth_answer']);
+                           
+                            $faculty=$obj->sanitize($conn,$_POST['faculty']);
+                            if(isset($_POST['is_active']))
+                            {
+                                $is_active=$_POST['is_active'];
+                            }
+                            else
+                            {
+                                $is_active='yes';
+                            }
+                            $answer=$obj->sanitize($conn,$_POST['answer']);
+                            $reason=$obj->sanitize($conn,$_POST['reason']);
+                            $marks=$obj->sanitize($conn,$_POST['marks']);
+                            $category=$obj->sanitize($conn,$_POST['category']);
+                            $added_date=date('Y-m-d');
+                            
+                            $tbl_name='tbl_question';
+                            $data="question='$question',
+                                    first_answer='$first_answer',
+                                    second_answer='$second_answer',
+                                    third_answer='$third_answer',
+                                    fourth_answer='$fourth_answer',
+                                    fifth_answer='$fifth_answer',
+                                    answer='$answer',
+                                    reason='$reason',
+                                    marks='$marks',
+                                    category='$category',
+                                    faculty='$faculty',
+                                    is_active='$is_active',
+                                    added_date='$added_date',
+                                    updated_date='',
+                                    image_name='$image_name'
+                                    ";
+                            $query=$obj->insert_data($tbl_name,$data);
+                            $res=$obj->execute_query($conn,$query);
+                            if($res===true)
+                            {
+                                $_SESSION['add']="<div class='success'>Question successfully added.</div>";
+                                header('location:'.SITEURL.'admin/index.php?page=questions');
+                            }
+                            else
+                            {
+                                $_SESSION['add']="<div class='error'>Failed to add question. Try again.</div>";
+                                header('location:'.SITEURL.'admin/index.php?page=add_question');
+                            }
+                        }
+                    ?>
                 </div>
             </div>
         </div>
