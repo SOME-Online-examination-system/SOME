@@ -16,4 +16,20 @@
                 $where="student_id=$id";
             }
             break;
+            case "faculties":
+            {
+                $tbl_name="tbl_faculty";
+                $title="Faculty";
+                $where="faculty_id=$id";
+            }
+            break;
+            
+            case "questions":
+            {
+                $tbl_name="tbl_question";
+                $title="Question";
+                $where="question_id=$id";
+            }
+            break;
+        }
             
