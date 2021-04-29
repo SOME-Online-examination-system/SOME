@@ -189,3 +189,47 @@
                             {
                                 $image_name=$previous_image;
                             }
+                                
+                            //Normal PHP Validation
+                            if(($question==null)or($first_answer==null)or($second_answer==null)or($third_answer==null)or($fourth_answer==null)or($answer==null))
+                            {
+                                $_SESSION['validation']="<div class='error'>Either Question or One of the Answers field is empty.</div>";
+                                header('location:'.SITEURL.'admin/index.php?page=update_question&id='.$question_id);
+                            }
+                            //Updating Question
+                            $tbl_name="tbl_question";
+                            $data="
+                                    question='$question',
+                                    first_answer='$first_answer',
+                                    second_answer='$second_answer',
+                                    third_answer='$third_answer',
+                                    fourth_answer='$fourth_answer',
+                                    fifth_answer='$fifth_answer',
+                                    answer='$answer',
+                                    reason='$reason',
+                                    marks='$marks',
+                                    category='$category',
+                                    faculty='$faculty',
+                                    is_active='$is_active',
+                                    updated_date='$updated_date',
+                                    image_name='$image_name'
+                            ";
+                            $where="question_id='$question_id'";
+                            $query=$obj->update_data($tbl_name,$data,$where);
+                            $res=$obj->execute_query($conn,$query);
+                            if($res===true)
+                            {
+                                $_SESSION['update']="<div class='success'>Question successfully updated.</div>";
+                                header('location:'.SITEURL.'admin/index.php?page=questions');
+                            }
+                            else
+                            {
+                                $_SESSION['update']="<div class='error'>Failed to update question.</div>";
+                                header('location:'.SITEURL.'admin/index.php?page=update_question&id='.$question_id);
+                            }
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
+        <!--Body Ends Here-->
