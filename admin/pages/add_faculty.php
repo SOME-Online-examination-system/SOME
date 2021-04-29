@@ -5,7 +5,20 @@
                     
                     <form method="post" action="" class="forms">
                         <h2>Add Faculty</h2>
-                       
+                      
+                            <?php 
+                            if(isset($_SESSION['validation']))
+                            {
+                                echo $_SESSION['validation'];
+                                unset($_SESSION['validation']);
+                            }
+                            if(isset($_SESSION['add']))
+                            {
+                                echo $_SESSION['add'];
+                                unset($_SESSION['add']);
+                            }
+                            ?>
+                            
                         <span class="name">Faculty Title</span> 
                         <input type="text" name="faculty_name" placeholder="Faculty Title" required="true" /> <br />
                         
