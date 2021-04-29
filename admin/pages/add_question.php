@@ -5,7 +5,23 @@
                     
                     <form method="post" action="" class="forms" enctype="multipart/form-data">
                         <h2>Add Question</h2>
-                       
+                        <?php 
+                            if(isset($_SESSION['add']))
+                            {
+                                echo $_SESSION['add'];
+                                unset($_SESSION['add']);
+                            }
+                            if(isset($_SESSION['invalid']))
+                            {
+                                echo $_SESSION['invalid'];
+                                unset($_SESSION['invalid']);
+                            }
+                            if(isset($_SESSION['upload']))
+                            {
+                                echo $_SESSION['upload'];
+                                unset($_SESSION['upload']);
+                            }
+                        ?>
                         <span class="name">Question</span> <br />
                         <textarea name="question" placeholder="Add Your Question" required="true"></textarea> <br />
                         <script>
@@ -61,7 +77,7 @@
                         
                         <span class="name">Faculty</span>
                         <select name="faculty">
-                           
+                            
                             
                         </select>
                         <br />
@@ -74,7 +90,8 @@
                         <input type="submit" name="submit" value="Add Question" class="btn-add" style="margin-left: 15%;" />
                         <a href="<?php echo SITEURL; ?>admin/index.php?page=questions"><button type="button" class="btn-delete">Cancel</button></a>
                     </form>
-                 
+                    
+                   
                 </div>
             </div>
         </div>
