@@ -33,3 +33,22 @@
                             <th>Is Active?</th>
                             <th>Actions</th>
                         </tr>
+                        
+                        <?php 
+                            //Getting all the faculties from database
+                            $tbl_name="tbl_faculty ORDER BY faculty_id DESC";
+                            $query=$obj->select_data($tbl_name);
+                            $res=$obj->execute_query($conn,$query);
+                            $count_rows=$obj->num_rows($res);
+                            $sn=1;
+                            if($count_rows>0)
+                            {
+                                while($row=$obj->fetch_data($res))
+                                {
+                                    $faculty_id=$row['faculty_id'];
+                                    $faculty_name=$row['faculty_name'];
+                                    $time_duration=$row['time_duration'];
+                                    $qns_per_page=$row['qns_per_set'];
+                                    $is_active=$row['is_active'];
+                                    ?>
+                                    <tr>
