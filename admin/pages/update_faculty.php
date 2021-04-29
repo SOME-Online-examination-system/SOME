@@ -1,5 +1,36 @@
 <!-- Body Starts Here -->
 
+           <?php 
+            if(isset($_GET['id']))
+            {
+                $faculty_id=$_GET['id'];
+                //Getting VAlues fro the datadabase
+                $tbl_name="tbl_faculty";
+                $where="faculty_id=$faculty_id";
+                $query=$obj->select_data($tbl_name,$where);
+                $res=$obj->execute_query($conn,$query);
+                $count_rows=$obj->num_rows($res);
+                if($count_rows==1)
+                {
+                    $row=$obj->fetch_data($res);
+                    $faculty_name=$row['faculty_name'];
+                    $time_duration=$row['time_duration'];
+                    $qns_per_page=$row['qns_per_set'];
+                    $total_english=$row['total_english'];
+                    $total_math=$row['total_math'];
+                    $is_active=$row['is_active'];
+                }
+                else
+                {
+                    header('location:'.SITEURL.'admin/index.php?page=faculties');
+                }
+            }
+            else
+            {
+                header('location:'.SITEURL.'admin/index.php?page=faculties');
+            }
+        ?>
+
 <div class="main">
             <div class="content">
                 <div class="report">
