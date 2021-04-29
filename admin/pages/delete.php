@@ -32,4 +32,24 @@
             }
             break;
         }
+        //Query to Delete
+        $query=$obj->delete_data($tbl_name,$where);
+        $res=$obj->execute_query($conn,$query);
+        if($res==true)
+        {
+            $_SESSION['delete']="<div class='success'>".$title." successfully deleted.</div>";
+            header('location:'.SITEURL.'admin/index.php?page='.$page);
+        }
+        else
+        {
+            $_SESSION['delete']="<div class='error'>Failed to delete ".$title.".</div>";
+            header('location:'.SITEURL.'admin/index.php?page='.$page);
+        }
+    }
+    else
+    {
+        $_SESSION['fail']="<div class='error'>Failed to delete. Please Try Again.</div>";
+        header('location:'.SITEURL.'admin/');
+    }
+?>
             
