@@ -77,7 +77,30 @@
                         
                         <span class="name">Faculty</span>
                         <select name="faculty">
-                            
+                            <?php 
+                                //Get Faculties from database
+                                $tbl_name="tbl_faculty";
+                                $query=$obj->select_data($tbl_name);
+                                $res=$obj->execute_query($conn,$query);
+                                $count_rows=$obj->num_rows($res);
+                                if($count_rows>0)
+                                {
+                                    while($row=$obj->fetch_data($res))
+                                    {
+                                        $faculty_id=$row['faculty_id'];
+                                        $faculty_name=$row['faculty_name'];
+                                        ?>
+                                        <option value="<?php echo $faculty_id; ?>"><?php echo $faculty_name; ?></option>
+                                        <?php
+                                    }
+                                }
+                                else
+                                {
+                                    ?>
+                                    <option value="0">Uncategorized</option>
+                                    <?php
+                                }
+                            ?>
                             
                         </select>
                         <br />
@@ -90,8 +113,7 @@
                         <input type="submit" name="submit" value="Add Question" class="btn-add" style="margin-left: 15%;" />
                         <a href="<?php echo SITEURL; ?>admin/index.php?page=questions"><button type="button" class="btn-delete">Cancel</button></a>
                     </form>
-                    
-                   
+                                   
                 </div>
             </div>
         </div>
