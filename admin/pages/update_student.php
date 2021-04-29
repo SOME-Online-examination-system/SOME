@@ -113,4 +113,64 @@
                         <input type="submit" name="submit" value="Update Student" class="btn-update" style="margin-left: 15%;" />
                         <a href="<?php echo SITEURL; ?>admin/index.php?page=students"><button type="button" class="btn-delete">Cancel</button></a>
                     </form>
-                    
+                     <?php 
+                        if(isset($_POST['submit']))
+                        {
+                            //echo "Clicked";
+                            $first_name=$obj->sanitize($conn,$_POST['first_name']);
+                            $last_name=$obj->sanitize($conn,$_POST['last_name']);
+                            $email=$obj->sanitize($conn,$_POST['email']);
+                            $username=$obj->sanitize($conn,$_POST['username']);
+                            $password=$obj->sanitize($conn,$_POST['password']);
+                            $contact=$obj->sanitize($conn,$_POST['contact']);
+                            if(isset($_POST['gender']))
+                            {
+                                $gender=$_POST['gender'];
+                            }
+                            $faculty=$_POST['faculty'];
+                            if(isset($_POST['is_active']))
+                            {
+                                $is_active=$_POST['is_active'];
+                            }
+                            $updated_date=date('Y-m-d');
+                            
+                            //Normal Validation
+                            if(($first_name||$last_name||$email||$username||$password)==null)
+                            {
+                                //SET SSESSION Message
+                                $_SESSION['validation']="<div class='error'>First Name or Last Name, or Email or Username or Password is Empty.</div>";
+                                header('location:'.SITEURL.'admin/index.php?page=update_student&student_id='.$student_id);
+                            }
+                            //Set Table name to update
+                            $tbl_name='tbl_student';
+                            //SEt New Data to Change
+                            $data="first_name='$first_name',
+                                    last_name='$last_name',
+                                    email='$email',
+                                    username='$username',
+                                    password='$password',
+                                    contact='$contact',
+                                    gender='$gender',
+                                    faculty='$faculty',
+                                    is_active='$is_active',
+                                    updated_date='$updated_date'
+                                    ";
+                            $where="student_id=$student_id";
+                            $query=$obj->update_data($tbl_name,$data,$where);
+                            $res=$obj->execute_query($conn,$query);
+                            if($res===true)
+                            {
+                                $_SESSION['update']="<div class='success'>Student detail successfully updated.</div>";
+                                header('location:'.SITEURL.'admin/index.php?page=students');
+                            }
+                            else
+                            {
+                                $_SESSION['update']="<div class='error'>Failed to update student details.</div>";
+                                header('location:'.SITEURL.'admin/index.php?page=update_student&student_id='.$student_id);
+                            }
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
+        <!--Body Ends Here-->
