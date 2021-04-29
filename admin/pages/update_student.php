@@ -1,5 +1,38 @@
 <!-- Body Starts Here -->
 
+<?php 
+    if(isset($_GET['student_id']))
+    {
+        $student_id=$_GET['student_id'];
+        $tbl_name='tbl_student';
+        $where="student_id=$student_id";
+        $query=$obj->select_data($tbl_name,$where);
+        $res=$obj->execute_query($conn,$query);
+        $count_rows=$obj->num_rows($res);
+        if($count_rows==1)
+        {
+            $row=$obj->fetch_data($res);
+            $first_name=$row['first_name'];
+            $last_name=$row['last_name'];
+            $email=$row['email'];
+            $username=$row['username'];
+            $password=$row['password'];
+            $contact=$row['contact'];
+            $gender=$row['gender'];
+            $faculty=$row['faculty'];
+            $is_active=$row['is_active'];
+        }
+        else
+        {
+            header('location:'.SITEURL.'admin/index.php?page=students');
+        }
+    }
+    else
+    {
+        header('location:'.SITEURL.'admin/index.php?page=students');
+    }
+?>
+
 <div class="main">
             <div class="content">
                 <div class="report">
