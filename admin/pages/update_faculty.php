@@ -37,4 +37,44 @@
                         <button type="button" class="btn-delete">Cancel</button>
                     </form>
                   
-                    <?php  ?>
+                    <?php
+                            
+                            if(isset($_POST['submit']))
+                        {
+                            //echo "Clcked";
+                            //Getting all the values from the forms
+                            $faculty_name=$obj->sanitize($conn,$_POST['faculty_name']);
+                            $time_duration=$obj->sanitize($conn,$_POST['time_duration']);
+                            $qns_per_page=$obj->sanitize($conn,$_POST['qns_per_page']);
+                            $total_english=$obj->sanitize($conn,$_POST['total_english_qns']);
+                            $total_math=$obj->sanitize($conn,$_POST['total_math_qns']);
+                            $is_active=$obj->sanitize($conn,$_POST['is_active']);
+                            $updated_date=date('Y-m-d');
+                            
+                            $tbl_name='tbl_faculty';
+                            $data="faculty_name='$faculty_name',
+                                    time_duration='$time_duration',
+                                    qns_per_set='$qns_per_page',
+                                    total_english='$total_english',
+                                    total_math='$total_math',
+                                    is_active='$is_active',
+                                    updated_date='$updated_date'";
+                            $where="faculty_id='$faculty_id'";
+                            $query=$obj->update_data($tbl_name,$data,$where);
+                            $res=$obj->execute_query($conn,$query);
+                            if($res===true)
+                            {
+                                $_SESSION['update']="<div class='success'>Faculty successfully updated.</div>";
+                                header('location:'.SITEURL.'admin/index.php?page=faculties');
+                            }
+                            else
+                            {
+                                $_SESSION['update']="<div class='error'>Failed to update faculty. Please try again.</div>";
+                                header('location:'.SITEURL.'admin/index.php?page=update_faculty&id='.$faculty_id);
+                            }
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
+        <!--Body Ends Here-->
