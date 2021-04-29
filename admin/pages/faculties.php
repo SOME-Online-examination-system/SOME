@@ -52,3 +52,28 @@
                                     $is_active=$row['is_active'];
                                     ?>
                                     <tr>
+                                        <td><?php echo $sn++; ?>. </td>
+                                        <td><?php echo $faculty_name; ?></td>
+                                        <td><?php echo $time_duration; ?></td>
+                                        <td><?php echo $qns_per_page; ?></td>
+                                        <td><?php echo $is_active; ?></td>
+                                        <td>
+                                            <a href="<?php echo SITEURL; ?>admin/index.php?page=update_faculty&id=<?php echo $faculty_id; ?>"><button type="button" class="btn-update">UPDATE</button></a> 
+                                            <a href="<?php echo SITEURL; ?>admin/pages/delete.php?id=<?php echo $faculty_id; ?>&page=faculties"><button type="button" class="btn-delete" onclick="return confirm('Are you sure?')">DELETE</button></a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                            }
+                            else
+                            {
+                                echo "<tr><td colspan='6'><div class='error'>No faculties added.</div></td></tr>";
+                            }
+                        ?>
+                        
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--Body Ends Here-->
