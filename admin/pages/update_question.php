@@ -1,4 +1,41 @@
 <!-- Body Starts Here -->
+                        
+              <?php
+                    if(isset($_GET['id']))
+            {
+                $question_id=$_GET['id'];
+                $tbl_name='tbl_question';
+                $where="question_id=$question_id";
+                $query=$obj->select_data($tbl_name,$where);
+                $res=$obj->execute_query($conn,$query);
+                $count_rows=$obj->num_rows($res);
+                if($count_rows==1)
+                {
+                    $row=$obj->fetch_data($res);
+                   $question=$row['question'];
+                   $first_answer=$row['first_answer'];
+                   $second_answer=$row['second_answer'];
+                   $third_answer=$row['third_answer'];
+                   $fourth_answer=$row['fourth_answer'];
+                   $fifth_answer=$row['fifth_answer'];
+                   $answer=$row['answer'];
+                   $reason=$row['reason'];
+                   $marks=$row['marks'];
+                   $category=$row['category'];
+                   $faculty_db=$row['faculty'];
+                   $is_active=$row['is_active'];
+                   $previous_image=$row['image_name'];
+                }
+                else
+                {
+                    header('location:'.SITEURL.'admin/index.php?page=questions');
+                }
+            }
+            else
+            {
+                header('location:'.SITEURL.'admin/index.php?page=questions');
+            }
+        ?>
 
         <div class="main">
             <div class="content">
