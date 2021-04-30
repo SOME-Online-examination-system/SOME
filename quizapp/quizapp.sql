@@ -57,4 +57,27 @@ CREATE TABLE `tbl_result` (
   `added_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Table structure for table `tbl_question`
+--
 
+CREATE TABLE `tbl_question` (
+  `question_id` int(10) UNSIGNED NOT NULL,
+  `question` longtext NOT NULL,
+  `first_answer` varchar(255) NOT NULL,
+  `second_answer` varchar(255) NOT NULL,
+  `third_answer` varchar(255) NOT NULL,
+  `fourth_answer` varchar(255) NOT NULL,
+  `fifth_answer` varchar(255) NOT NULL,
+  `answer` int(11) NOT NULL,
+  `reason` longtext NOT NULL,
+  `marks` decimal(10,0) NOT NULL,
+  `category` varchar(100) NOT NULL,
+  `faculty` int(11) NOT NULL,
+  `is_active` varchar(10) NOT NULL,
+  `added_date` date NOT NULL,
+  `updated_date` date NOT NULL,
+  `image_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
