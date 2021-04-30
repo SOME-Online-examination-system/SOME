@@ -103,3 +103,11 @@ CREATE TABLE `tbl_student` (
 --
 -- Dumping data for table `tbl_student`
 --
+INSERT INTO `tbl_student` (`student_id`, `first_name`, `last_name`, `email`, `username`, `password`, `contact`, `gender`, `faculty`, `is_active`, `added_date`, `updated_date`) VALUES
+(19103082, 'Nitin', 'Thwass', 'nitinthwass.bt19cse@pec.edu.in', '19103082', '19103082', '897564231', 'male', '1', 'no', '2020-4-27', '2020-4-29');
+
+
+
+--
+-- Indexes for table `tbl_app
+
