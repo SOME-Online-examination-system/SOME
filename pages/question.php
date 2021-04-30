@@ -43,3 +43,22 @@
     
     
 ?>
+<!--Body Starts Here-->
+        <div class="main">
+            <div class="content">
+                
+                User: <span class="heavy"><?php echo $full_name; ?></span>&nbsp;&nbsp;
+                Faculty: <span class="heavy"><?php echo $faculty_name; ?></span>&nbsp;&nbsp;
+                Start Time: <span class="heavy"><?php echo $_SESSION['strt_time']; ?></span>&nbsp;&nbsp;
+                End Time: <span class="heavy"><?php echo $_SESSION['end_time']; ?></span>&nbsp;&nbsp;
+                <?php 
+                    //Getting Time Difference
+                    $startTime=strtotime($_SESSION['end_time']);
+                    $currentTime=strtotime(date('h:i:s A'));
+                    $timeDifference=$startTime-$currentTime;
+                    
+                ?>
+                <span class="timer" data-seconds-left=<?php echo $timeDifference; ?>></span>
+                <form method="post" action="">
+                    <div class="welcome">
+                        <div class="ques">
