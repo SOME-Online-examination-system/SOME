@@ -74,29 +74,9 @@ INSERT INTO `tbl_faculty` (`faculty_id`, `faculty_name`, `time_duration`, `qns_p
 
 
 
-CREATE TABLE `tbl_result_summary` (
-  `summary_id` int(10) UNSIGNED NOT NULL,
-  `student_id` int(11) UNSIGNED NOT NULL,
-  `marks` decimal(10,2) NOT NULL,
-  `added_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Table structure for table `tbl_result`
-
-CREATE TABLE `tbl_result` (
-  `result_id` int(10) UNSIGNED NOT NULL,
-  `student_id` int(11) UNSIGNED NOT NULL,
-  `question_id` int(11) UNSIGNED NOT NULL,
-  `user_answer` int(11) UNSIGNED NOT NULL,
-  `right_answer` int(11) UNSIGNED NOT NULL,
-  `added_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 --
 -- Table structure for table `tbl_question`
 --
-
 CREATE TABLE `tbl_question` (
   `question_id` int(10) UNSIGNED NOT NULL,
   `question` longtext NOT NULL,
@@ -115,6 +95,12 @@ CREATE TABLE `tbl_question` (
   `updated_date` date NOT NULL,
   `image_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_question`
+--
+INSERT INTO `tbl_question` (`question_id`, `question`, `first_answer`, `second_answer`, `third_answer`, `fourth_answer`, `fifth_answer`, `answer`, `reason`, `marks`, `category`, `faculty`, `is_active`, `added_date`, `updated_date`, `image_name`) VALUES
+
 
 --
 --
