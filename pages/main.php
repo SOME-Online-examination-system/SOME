@@ -96,3 +96,10 @@
         break;
         
         default:
+        {
+            include('welcome.php');
+        }
+        break;
+    }
+?>
+
