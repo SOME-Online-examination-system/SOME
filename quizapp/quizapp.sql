@@ -67,8 +67,8 @@ CREATE TABLE `tbl_faculty` (
 -- Dumping data for table `tbl_faculty`
 --
 INSERT INTO `tbl_faculty` (`faculty_id`, `faculty_name`, `time_duration`, `qns_per_set`, `total_english`, `total_math`, `is_active`, `added_date`, `updated_date`) VALUES
-(1, 'GMAT', 5, 8, 6, 2, 'yes', '2017-04-04', '2017-06-13'),
-(2, 'GRE', 180, 5, 1, 4, 'yes', '2017-04-04', '2017-06-12');
+(1, 'GMAT', 5, 8, 6, 2, 'yes', '2021-04-24', '2021-06-27'),
+(2, 'GRE', 180, 5, 1, 4, 'yes', '2021-04-24', '2021-06-27');
 
 -- --------------------------------------------------------
 
