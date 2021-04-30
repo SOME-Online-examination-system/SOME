@@ -62,3 +62,40 @@
                 <form method="post" action="">
                     <div class="welcome">
                         <div class="ques">
+                        <?php 
+                            
+                            if(!isset($_SESSION['all_qns']))
+                            {
+                                $_SESSION['all_qns']=0;
+                            }
+                            
+                            if(isset($_SESSION['sn']))
+                            {
+                                $sn=$_SESSION['sn'];
+                            }
+                            else
+                            {
+                                $sn=0;
+                            }
+                            $tbl_name="tbl_question";
+                            
+                            //Get English Questions Only
+                            if($sn<=$total_english)
+                            {
+                                //New Query FOR ENGLISH
+                                $where="is_active='yes' && category='English' && faculty='".$faculty."' && question_id NOT IN (".$_SESSION['all_qns'].")";
+                            }
+                            else
+                            {
+                                //New Query FOR MATHS
+                                $where="is_active='yes' && category='Math' && faculty='".$faculty."' && question_id NOT IN (".$_SESSION['all_qns'].")";
+                            }
+                            //Get Maths Questions Only
+                            //New Query
+                            //$where="is_active='yes' && faculty='".$faculty."' && question_id NOT IN (".$_SESSION['all_qns'].")";
+                            //Old Query
+                            //$where="is_active='yes'";
+                            $limit=1;
+                            $query=$obj->select_random_row($tbl_name,$where,$limit);
+                            $res=$obj->execute_query($conn,$query);
+                            
