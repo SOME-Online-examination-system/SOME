@@ -81,3 +81,25 @@ CREATE TABLE `tbl_question` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+--
+-- Table structure for table `tbl_student`
+--
+
+CREATE TABLE `tbl_student` (
+  `student_id` int(10) UNSIGNED NOT NULL,
+  `first_name` varchar(150) NOT NULL,
+  `last_name` varchar(150) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `contact` varchar(20) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `faculty` varchar(50) NOT NULL,
+  `is_active` varchar(10) NOT NULL,
+  `added_date` date NOT NULL,
+  `updated_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_student`
+--
