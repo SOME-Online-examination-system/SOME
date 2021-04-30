@@ -126,4 +126,67 @@
                             //Checking ALl Answered Questions
                             
                         ?>
+                        <form method="post" action="">
+                            <!--Question Starts Here-->
+                            <div class="left-ques">
+                            <?php 
+                            if(!isset($_SESSION['sn']))
+                            {
+                                $_SESSION['sn']=1;
+                                echo $_SESSION['sn'];
+                            }
+                            else
+                            {
+                                echo $_SESSION['sn'];
+                            } 
+                            //Set the total number of questions per set
+                            if($_SESSION['sn']>$qns_per_page)
+                            {
+                                header('location:'.SITEURL.'index.php?page=endSession');
+                            }
+                            ?>. 
+                            
+                                <?php echo $question; ?><br />
+                                <?php 
+                                    if($image_name!="")
+                                    {
+                                        ?>
+                                        <img src="<?php echo SITEURL; ?>images/questions/<?php echo $image_name; ?>" alt="beyond boundaries" />
+                                        <?php
+                                    }
+                                ?>
+                                
+                            </div>
+                            <!--Question Ends Here-->
+                            
+                            <!--Answer Starts Here-->
+                            <div class="answers">
+                                <input type="radio" name="answer" value="1" required="true" /> <span class="radio-ans"><?php echo $first_answer; ?></span>  <hr /><br />
+                                <input type="radio" name="answer" value="2" required="true" /> <span class="radio-ans"><?php echo $second_answer; ?></span> <hr /><br />
+                                <input type="radio" name="answer" value="3" required="true" /> <span class="radio-ans"><?php echo $third_answer; ?></span>  <hr /><br />
+                                <input type="radio" name="answer" value="4" required="true" /> <span class="radio-ans"><?php echo $fourth_answer; ?></span>  <hr /><br />
+                                <input type="radio" name="answer" value="5" required="true" /> <span class="radio-ans"><?php echo $fifth_answer; ?> <hr /><br />&nbsp;
+                                <input type="hidden" name="question_id" value="<?php echo $question_id; ?>" />
+                                <input type="hidden" name="right_answer" value="<?php echo $answer; ?>" />
+                                <input type="hidden" name="marks" value="<?php echo $marks; ?>" />
+                            </div>
+                            <!--Answer Ends Here-->
+                            <div class="clearfix"></div>
+                            <!--
+                                <?php echo $question; ?> <br /><br />
+                            <input type="radio" name="answer" value="1" /> <span class="radio-ans"><?php echo $first_answer; ?></span>  <hr />
+                            <input type="radio" name="answer" value="2" /> <span class="radio-ans"><?php echo $second_answer; ?></span> <hr />
+                            <input type="radio" name="answer" value="3" /> <span class="radio-ans"><?php echo $third_answer; ?></span>  <hr />
+                            <input type="radio" name="answer" value="4" /> <span class="radio-ans"><?php echo $fourth_answer; ?> <hr /><br />&nbsp;
+                            <input type="hidden" name="question_id" value="<?php echo $question_id; ?>" />
+                            <input type="hidden" name="right_answer" value="<?php echo $answer; ?>" />
+                            -->
+                            <div class="buttons">
+                                <input type="submit" name="submit" value="Submit and Next" class="btn-go" />
+                                
+                                <a href="<?php echo SITEURL; ?>index.php?page=logout">
+                                    <button type="button" class="btn-exit">&nbsp; Quit &nbsp;</button>
+                                </a>
+                            </div>
+                        </form>
                             
