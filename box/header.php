@@ -17,6 +17,9 @@
         </script>
         <!--COUNT DOWN TIMER ENDS HERE-->
         
+        <!--ADDING CKEDITOR HERE-->
+        <script type="text/javascript" src="<?php echo SITEURL; ?>/assets/ckeditor/ckeditor.js"></script>
+        
         <!--CSS File Starts Here-->
         <link rel="stylesheet" type="text/css" href="<?php echo SITEURL; ?>/assets/css/style.css" />
         <!--CSS File Ends Here-->
