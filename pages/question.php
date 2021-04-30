@@ -98,4 +98,32 @@
                             $limit=1;
                             $query=$obj->select_random_row($tbl_name,$where,$limit);
                             $res=$obj->execute_query($conn,$query);
+                            if($res==true)
+                            {
+                                $count_rows=$obj->num_rows($res);
+                                if($count_rows>0)
+                                {
+                                    $row=$obj->fetch_data($res);
+                                    $question_id=$row['question_id'];
+                                    //Check if the question is answered or not
+                                    
+                                    $question=$row['question'];
+                                    $first_answer=$row['first_answer'];
+                                    $second_answer=$row['second_answer'];
+                                    $third_answer=$row['third_answer'];
+                                    $fourth_answer=$row['fourth_answer'];
+                                    $fifth_answer=$row['fifth_answer'];
+                                    $answer=$row['answer'];
+                                    $marks=$row['marks'];
+                                    $image_name=$row['image_name'];
+                                }
+                                else
+                                {
+                                    //echo "Error";
+                                    header('location:'.SITEURL.'index.php?page=endSession');
+                                }
+                            }
+                            //Checking ALl Answered Questions
+                            
+                        ?>
                             
