@@ -101,7 +101,47 @@ CREATE TABLE `tbl_question` (
 --
 INSERT INTO `tbl_question` (`question_id`, `question`, `first_answer`, `second_answer`, `third_answer`, `fourth_answer`, `fifth_answer`, `answer`, `reason`, `marks`, `category`, `faculty`, `is_active`, `added_date`, `updated_date`, `image_name`) VALUES
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `tbl_result`
+--
+
+CREATE TABLE `tbl_result` (
+  `result_id` int(10) UNSIGNED NOT NULL,
+  `student_id` int(11) UNSIGNED NOT NULL,
+  `question_id` int(11) UNSIGNED NOT NULL,
+  `user_answer` int(11) UNSIGNED NOT NULL,
+  `right_answer` int(11) UNSIGNED NOT NULL,
+  `added_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_result`
+--
+
+INSERT INTO `tbl_result` (`result_id`, `student_id`, `question_id`, `user_answer`, `right_answer`, `added_date`) VALUES
+(11, 1, 39, 1, 4, '2021-04-27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_result_summary`
+--
+
+CREATE TABLE `tbl_result_summary` (
+  `summary_id` int(10) UNSIGNED NOT NULL,
+  `student_id` int(11) UNSIGNED NOT NULL,
+  `marks` decimal(10,2) NOT NULL,
+  `added_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_result_summary`
+--
+
+INSERT INTO `tbl_result_summary` (`summary_id`, `student_id`, `marks`, `added_date`) VALUES
+(8, 1, '0.00', '2021-04-27');
 --
 --
 -- Table structure for table `tbl_student`
