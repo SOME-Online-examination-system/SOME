@@ -37,4 +37,12 @@ CREATE TABLE `tbl_app` (
   `image_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+CREATE TABLE `tbl_result_summary` (
+  `summary_id` int(10) UNSIGNED NOT NULL,
+  `student_id` int(11) UNSIGNED NOT NULL,
+  `marks` decimal(10,2) NOT NULL,
+  `added_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
