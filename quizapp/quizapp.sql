@@ -110,4 +110,33 @@ INSERT INTO `tbl_student` (`student_id`, `first_name`, `last_name`, `email`, `us
 
 --
 -- Indexes for table `tbl_app
+--
+ALTER TABLE `tbl_app`
+  ADD PRIMARY KEY (`app_id`);
+
+--
+-- Indexes for table `tbl_faculty`
+--
+ALTER TABLE `tbl_faculty`
+  ADD PRIMARY KEY (`faculty_id`);
+
+--
+-- Indexes for table `tbl_question`
+--
+ALTER TABLE `tbl_question`
+  ADD PRIMARY KEY (`question_id`);
+
+--
+-- Indexes for table `tbl_result`
+--
+ALTER TABLE `tbl_result`
+  ADD PRIMARY KEY (`result_id`);
+
+--
+-- Indexes for table `tbl_result_summary`
+--
+ALTER TABLE `tbl_result_summary`
+  ADD PRIMARY KEY (`summary_id`);
+
+--
 
