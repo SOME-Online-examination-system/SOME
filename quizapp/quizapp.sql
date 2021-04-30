@@ -41,6 +41,7 @@ CREATE TABLE `tbl_app` (
 -- Dumping data for table `tbl_app`
 --
 
+
 INSERT INTO `tbl_app` (`app_id`, `app_name`, `email`, `username`, `password`, `contact`, `added_date`, `updated_date`, `image_name`) VALUES
 (1, 'Some Online Exam System', 'hi@abhishek.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', '9116561230', '2021-04-24', '2021-05-26', '');
 
@@ -48,6 +49,22 @@ INSERT INTO `tbl_app` (`app_id`, `app_name`, `email`, `username`, `password`, `c
 
 --
 -- Table structure for table `tbl_faculty`
+--
+
+CREATE TABLE `tbl_faculty` (
+  `faculty_id` int(10) UNSIGNED NOT NULL,
+  `faculty_name` varchar(150) NOT NULL,
+  `time_duration` int(11) NOT NULL,
+  `qns_per_set` int(11) NOT NULL,
+  `total_english` int(10) UNSIGNED NOT NULL,
+  `total_math` int(10) UNSIGNED NOT NULL,
+  `is_active` varchar(10) NOT NULL,
+  `added_date` date NOT NULL,
+  `updated_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_faculty`
 --
 
 
