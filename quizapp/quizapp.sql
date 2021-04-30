@@ -37,6 +37,19 @@ CREATE TABLE `tbl_app` (
   `image_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `tbl_app`
+--
+
+INSERT INTO `tbl_app` (`app_id`, `app_name`, `email`, `username`, `password`, `contact`, `added_date`, `updated_date`, `image_name`) VALUES
+(1, 'Some Online Exam System', 'hi@abhishek.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', '9116561230', '2021-04-24', '2021-05-26', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_faculty`
+--
+
 
 CREATE TABLE `tbl_result_summary` (
   `summary_id` int(10) UNSIGNED NOT NULL,
