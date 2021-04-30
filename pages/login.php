@@ -1,28 +1,13 @@
-<?php 
-    include('config/apply.php');
-    include('../box/header.php');
-?>
-
 <!--Body Starts Here-->
         <div class="main">
             <div class="login">
                 <form method="post" action="">
-                    <h2>Admin | Log In</h2>
+                    <h2>Log In</h2>
                     <?php 
-                        if(isset($_SESSION['validation']))
+                        if(isset($_SESSION['invalid']))
                         {
-                            echo $_SESSION['validation'];
-                            unset($_SESSION['vaidation']);
-                        }
-                        if(isset($_SESSION['fail']))
-                        {
-                            echo $_SESSION['fail'];
-                            unset($_SESSION['fail']);
-                        }
-                        if(isset($_SESSION['xss']))
-                        {
-                            echo $_SESSION['xss'];
-                            unset($_SESSION['xss']);
+                            echo $_SESSION['invalid'];
+                            unset($_SESSION['invalid']);
                         }
                     ?>
                     <input type="text" name="username" placeholder="Username" required="true" />
@@ -33,37 +18,29 @@
                 <?php 
                     if(isset($_POST['submit']))
                     {
-                        //echo "Clicked";
+                        //echo "CLicked";
+                        //Get Values from forms
                         $username=$obj->sanitize($conn,$_POST['username']);
-                        $password_db=md5($obj->sanitize($conn,$_POST['password']));
-                        
-                        if(($username=="")or($password=""))
-                        {
-                            $_SESSION['validation']="<div class='error'>Username or Password is Empty</div>";
-                            header('location:'.SITEURL.'admin/login.php');
-                        }
-                        $tbl_name="tbl_app";
-                        $where="username='$username' AND password='$password_db'";
+                        $password=$obj->sanitize($conn,$_POST['password']);
+                        //Check Login
+                        $tbl_name="tbl_student";
+                        $where="username='$username' && password='$password' && is_active='yes'";
                         $query=$obj->select_data($tbl_name,$where);
                         $res=$obj->execute_query($conn,$query);
                         $count_rows=$obj->num_rows($res);
-                        if($count_rows==1)
+                        if($count_rows>0)
                         {
-                            $_SESSION['user']=$username;
-                            $_SESSION['success']="<div class='success'>Login Successful. Welcome ".$username." to dashboard.</div>";
-                            header('location:'.SITEURL.'admin/index.php');
+                            $_SESSION['student']=$username;
+                            $_SESSION['login']="<div class='success'>Login Successful.</div>";
+                            header('location:'.SITEURL.'index.php?page=welcome');
                         }
                         else
                         {
-                            $_SESSION['fail']="<div class='error'>Username or Password is invalid. Please try again.</div>";
-                            header('location:'.SITEURL.'admin/login.php');
+                            $_SESSION['invalid']="<div class='error'>Username or Password is invalid.</div>";
+                            header('location:'.SITEURL.'index.php?page=login');
                         }
                     }
                 ?>
             </div>
         </div>
         <!--Body Ends Here-->
-
-<?php
-    include('../box/footer.php');
-?>
