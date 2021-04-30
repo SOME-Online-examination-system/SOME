@@ -46,3 +46,15 @@ CREATE TABLE `tbl_result_summary` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Table structure for table `tbl_result`
+
+CREATE TABLE `tbl_result` (
+  `result_id` int(10) UNSIGNED NOT NULL,
+  `student_id` int(11) UNSIGNED NOT NULL,
+  `question_id` int(11) UNSIGNED NOT NULL,
+  `user_answer` int(11) UNSIGNED NOT NULL,
+  `right_answer` int(11) UNSIGNED NOT NULL,
+  `added_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
