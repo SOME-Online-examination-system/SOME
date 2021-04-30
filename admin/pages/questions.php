@@ -55,8 +55,16 @@
                                         <td><?php echo $sn++; ?>. </td>
                                         <td style="width: 650px;"><?php echo $question; ?></td>
                                         <td><?php echo $answer; ?></td>
-                                        <td><?php echo $faculty; ?></td></td>
+                                        <td><?php
+
+                                            //Get FAculty Name from faculty_id
+                                            $tbl_name2="tbl_faculty";
+                                            $faculty_name=$obj->get_facultyname($tbl_name2,$faculty,$conn); 
+                                            echo $faculty_name;
+
+                                        ?></td></td>
                                         <td><?php echo $is_active; ?></td>
+                                        
                                         <td>
                                             <a href="<?php echo SITEURL; ?>admin/index.php?page=update_question&id=<?php echo $question_id; ?>"><button type="button" class="btn-update">UPDATE</button></a> 
                                             <a href="<?php echo SITEURL; ?>admin/pages/delete.php?id=<?php echo $question_id; ?>&page=questions"><button type="button" class="btn-delete" onclick="return confirm('Are you sure?')">DELETE</button></a>
