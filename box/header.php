@@ -34,7 +34,7 @@
                 </div>
                 
                 <div class="head-title">
-                    <h1>SOME</h1>
+                    <h1>Online Examination Portal</h1>
                 </div>
             </div>
         </header>
